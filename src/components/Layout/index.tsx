@@ -1,4 +1,5 @@
 import cx from "classnames";
+import { signIn, useSession } from "next-auth/client";
 import { HTMLProps } from "react";
 
 export default function Layout({
@@ -6,12 +7,22 @@ export default function Layout({
   children,
   ...props
 }: HTMLProps<HTMLDivElement>) {
+  const [session, loading] = useSession();
+
+  if (!session)
+    return <button onClick={() => signIn("spotify")}>Sign in</button>;
+
+  if (loading) return <h1>Loading...</h1>;
+
   return (
     <div
-      className={cx("bg-spotify-black h-screen text-white py-8", className)}
+      className={cx(
+        "min-h-screen h-full py-8 text-white bg-spotify-black",
+        className
+      )}
       {...props}
     >
-      <main className="max-w-6xl mx-auto">{children}</main>
+      <main className="px-4">{children}</main>
     </div>
   );
 }
