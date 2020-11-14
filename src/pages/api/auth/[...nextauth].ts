@@ -9,7 +9,13 @@ const options: InitOptions = {
     Providers.Spotify({
       clientId: process.env.SPOTIFY_CLIENT_ID,
       clientSecret: process.env.SPOTIFY_CLIENT_SECRET,
-      scope: "user-top-read user-read-private user-read-email",
+      scope: [
+        "user-top-read",
+        "user-read-private",
+        "user-read-email",
+        "user-follow-read",
+        "playlist-read-private",
+      ].join(" "),
     }),
   ],
   callbacks: {

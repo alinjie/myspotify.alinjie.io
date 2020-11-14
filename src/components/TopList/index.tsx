@@ -4,7 +4,7 @@ type Item = {
   id: string;
   image: string;
   artist: string;
-  songOrAlbum: string;
+  songOrArtist: string;
 };
 
 type Props = {
@@ -15,7 +15,7 @@ type Props = {
 export default function TopList({ header, items }: Props) {
   return (
     <div>
-      <h3 className="text-spotify-green font-bold text-xl my-4">{header}</h3>
+      <h3 className="my-4 font-semibold">{header}</h3>
       <ul className="space-y-4">
         {items.map((item) => (
           <li key={item.id} className="flex flex-col">
@@ -30,7 +30,7 @@ export default function TopList({ header, items }: Props) {
               </div>
               <div className="flex flex-col">
                 <span className="font-semibold">{item.artist}</span>
-                <span>{item.songOrAlbum}</span>
+                <span>{item.songOrArtist}</span>
               </div>
             </div>
           </li>

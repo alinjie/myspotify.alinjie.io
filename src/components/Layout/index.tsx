@@ -1,6 +1,7 @@
 import cx from "classnames";
 import { signIn, useSession } from "next-auth/client";
 import { HTMLProps } from "react";
+import Header from "components/Header";
 
 export default function Layout({
   className,
@@ -17,12 +18,13 @@ export default function Layout({
   return (
     <div
       className={cx(
-        "min-h-screen h-full py-8 text-white bg-spotify-black",
+        "min-h-screen h-full text-white bg-spotify-black",
         className
       )}
       {...props}
     >
-      <main className="px-4">{children}</main>
+      <Header />
+      <main className="p-4 max-w-6xl mx-auto">{children}</main>
     </div>
   );
 }
