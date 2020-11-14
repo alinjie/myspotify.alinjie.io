@@ -1,58 +1,49 @@
-import Header from "components/Header";
-import TopList from "components/TopList";
-import { SPOTIFY_API_URL } from "consts";
-import { TopTracks } from "dtos/TopTracks";
-import { useSession } from "next-auth/client";
-import useSWR from "swr";
-import { tracksToTopListItems } from "utils/tracksToTopListItems";
-
-const terms = ["long_term", "medium_term", "short_term"];
+import Artist from "components/Artist";
+import Track from "components/Track";
+import UserOverview from "components/UserOverview";
+import { useTopArtists } from "hooks/useTopArtists";
+import { useTopTracks } from "hooks/useTopTracks";
 
 export default function Home() {
-  const [session] = useSession();
+  const topTracksQuery = useTopTracks();
+  const topArtistsQuery = useTopArtists();
 
-  const { data, error } = useSWR("top-tracks", async () => {
-    return await Promise.all(
-      terms.map(async (timeSpan) => {
-        const response = await fetch(
-          `${SPOTIFY_API_URL}/me/top/tracks?limit=5&time_range=${timeSpan}`,
-          {
-            headers: {
-              Authorization: `Bearer ${session.accessToken}`,
-            },
-          }
-        );
-
-        if (!response.ok) {
-          throw await response.text();
-        }
-
-        return (await response.json()) as TopTracks;
-      })
-    );
-  });
+  const error = topTracksQuery.error || topArtistsQuery.error;
+  const loading = !topArtistsQuery.data || !topTracksQuery.data;
 
   if (error) return <p>{error}</p>;
 
-  if (!data) return <h1>Loading...</h1>;
+  if (loading) return <h1>Loading...</h1>;
 
-  const [longTermTopTrack, mediumTermTopTracks, shortTermTopTracks] = data;
+  const topArtistsThisMonth = topArtistsQuery.data[2].items;
+  const topTracksThisMonth = topTracksQuery.data[2].items;
 
   return (
     <div>
-      <Header image={session.user.image} name={session.user.name} />
-      <TopList
-        header="Top tracks (Last month)"
-        items={tracksToTopListItems(shortTermTopTracks)}
-      />
-      <TopList
-        header="Top tracks (Last 6 months)"
-        items={tracksToTopListItems(mediumTermTopTracks)}
-      />
-      <TopList
-        header="Top tracks (All time)"
-        items={tracksToTopListItems(longTermTopTrack)}
-      />
+      <UserOverview />
+      <div className="mt-8 space-y-8 md:flex md:space-y">
+        <div className="md:flex-1">
+          <h2 className="font-bold my-4">Top artists this month</h2>
+          {topArtistsThisMonth.map((artist) => (
+            <Artist
+              key={artist.id}
+              image={artist.images[0].url}
+              name={artist.name}
+            />
+          ))}
+        </div>
+        <div className="md:flex-1">
+          <h2 className="font-bold my-4">Top tracks this month</h2>
+          {topTracksThisMonth.map((track) => (
+            <Track
+              key={track.id}
+              albumCover={track.album.images[0].url}
+              name={track.name}
+              artistName={track.artists[0].name}
+            />
+          ))}
+        </div>
+      </div>
     </div>
   );
 }
