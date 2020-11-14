@@ -21,7 +21,7 @@ export default function Home() {
   return (
     <div>
       <UserOverview />
-      <div className="mt-8 space-y-8 md:flex md:space-y">
+      <div className="mt-8 space-y-8 md:flex md:space-y-0">
         <div className="md:flex-1">
           <h2 className="font-bold my-4">Top artists this month</h2>
           {topArtistsThisMonth.map((artist) => (
