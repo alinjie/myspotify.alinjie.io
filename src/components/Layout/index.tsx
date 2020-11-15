@@ -2,7 +2,6 @@ import cx from "classnames";
 import { signIn, useSession } from "next-auth/client";
 import { HTMLProps } from "react";
 import Header from "components/Header";
-import { useRouter } from "next/dist/client/router";
 
 export default function Layout({
   className,
@@ -13,11 +12,11 @@ export default function Layout({
 
   if (typeof window === "undefined") return null;
 
-  const { host } = window.location;
+  const { origin } = window.location;
 
   if (!session) {
     return (
-      <button onClick={() => signIn("spotify", { callbackUrl: host })}>
+      <button onClick={() => signIn("spotify", { callbackUrl: origin })}>
         Sign in
       </button>
     );
