@@ -6,6 +6,9 @@ module.exports = {
   purge: [],
   theme: {
     extend: {
+      width: {
+        "max-content": "max-content"
+      },
       gridTemplateColumns: {
         "autofit-150": "repeat(auto-fit, minmax(150px, 1fr))",
       },

@@ -1,11 +1,11 @@
 import { SPOTIFY_API_URL } from "consts";
 import { ArtistFollowing } from "dtos/ArtistFollowing";
 import { useSession } from "next-auth/client";
-import useSWR from "swr";
+import { useQuery } from "react-query";
 
 export function useArtistFollowing() {
   const [session] = useSession();
-  return useSWR<ArtistFollowing, string>("artist-following", async () => {
+  return useQuery<ArtistFollowing, string>("artist-following", async () => {
     const response = await fetch(
       `${SPOTIFY_API_URL}/me/following?type=artist`,
       {

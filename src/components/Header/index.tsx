@@ -29,12 +29,16 @@ export default function Header() {
   return (
     <header className="flex items-center justify-between p-4 max-w-6xl mx-auto">
       <div>
-        <Image
-          src="/img/spotify-logo.png"
-          height={40}
-          width={40}
-          className="rounded-full"
-        />
+        <Link href="/">
+          <a>
+            <Image
+              src="/img/spotify-logo.png"
+              height={32}
+              width={32}
+              className="rounded-full"
+            />
+          </a>
+        </Link>
       </div>
       <nav>
         <ul className="flex space-x-3">

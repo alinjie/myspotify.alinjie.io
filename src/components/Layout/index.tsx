@@ -10,7 +10,7 @@ export default function Layout({
 }: HTMLProps<HTMLDivElement>) {
   const [session, loading] = useSession();
 
-  if (!session)
+  if (!session || new Date(session.expires) < new Date())
     return <button onClick={() => signIn("spotify")}>Sign in</button>;
 
   if (loading) return <h1>Loading...</h1>;

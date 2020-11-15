@@ -5,8 +5,8 @@ import { useTopArtists } from "hooks/useTopArtists";
 import { useTopTracks } from "hooks/useTopTracks";
 
 export default function Home() {
-  const topTracksQuery = useTopTracks();
-  const topArtistsQuery = useTopArtists();
+  const topTracksQuery = useTopTracks("short_term", 10);
+  const topArtistsQuery = useTopArtists("short_term", 10);
 
   const error = topTracksQuery.error || topArtistsQuery.error;
   const loading = !topArtistsQuery.data || !topTracksQuery.data;
@@ -15,15 +15,15 @@ export default function Home() {
 
   if (loading) return <h1>Loading...</h1>;
 
-  const topArtistsThisMonth = topArtistsQuery.data[2].items;
-  const topTracksThisMonth = topTracksQuery.data[2].items;
+  const topArtistsThisMonth = topArtistsQuery.data[0].items;
+  const topTracksThisMonth = topTracksQuery.data[0].items;
 
   return (
     <div>
       <UserOverview />
       <div className="mt-8 space-y-8 md:flex md:space-y-0">
-        <div className="md:flex-1">
-          <h2 className="font-bold my-4">Top artists this month</h2>
+        <div className="md:flex-1 space-y-4">
+          <h2 className="text-lg font-bold my-4">Top artists last 4 weeks</h2>
           {topArtistsThisMonth.map((artist) => (
             <Artist
               key={artist.id}
@@ -32,8 +32,8 @@ export default function Home() {
             />
           ))}
         </div>
-        <div className="md:flex-1">
-          <h2 className="font-bold my-4">Top tracks this month</h2>
+        <div className="md:flex-1 space-y-4">
+          <h2 className="text-lg font-bold my-4">Top tracks last 4 weeks</h2>
           {topTracksThisMonth.map((track) => (
             <Track
               key={track.id}

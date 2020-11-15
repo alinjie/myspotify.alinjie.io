@@ -8,8 +8,8 @@ export function useTopTracks(timespan: Timespan = "medium_term", limit = 10) {
   const [session] = useSession();
 
   return useInfiniteQuery<TopTracks, string>(
-    "top-tracks",
-    async (_, offset = 0) => {
+    ["top-tracks", timespan, limit],
+    async (_key, _timeSpan, _limit, offset = 0) => {
       const url = `${SPOTIFY_API_URL}/me/top/tracks?limit=${limit}&offset=${offset}&time_range=${timespan}`;
 
       const response = await fetch(url, {
