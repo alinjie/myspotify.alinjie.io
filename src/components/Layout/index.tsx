@@ -11,16 +11,18 @@ export default function Layout({
 }: HTMLProps<HTMLDivElement>) {
   const [session, loading] = useSession();
 
-  if (typeof window === "undefined") return null;
+  const callbackUrl =
+    process.env.NODE_ENV === "development"
+      ? "http://localhost:3000"
+      : "https://myspotify-alinjie-io.vercel.app/";
 
-  const { host } = window.location;
-
-  if (!session || new Date(session.expires) < new Date())
+  if (!session) {
     return (
-      <button onClick={() => signIn("spotify", { callbackUrl: host })}>
+      <button onClick={() => signIn("spotify", { callbackUrl })}>
         Sign in
       </button>
     );
+  }
 
   if (loading) return <h1>Loading...</h1>;
 
