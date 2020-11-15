@@ -10,7 +10,10 @@ export default function Tracks() {
   const [activeFilter, setActiveFilter] = useState<Timespan>(
     timeSpanOptions[0].value
   );
-  const { data, error, isFetching, canFetchMore, fetchMore } = useTopTracks();
+  const { data, error, isFetching, canFetchMore, fetchMore } = useTopTracks(
+    activeFilter,
+    30
+  );
 
   if (error) return <p>{error}</p>;
 
