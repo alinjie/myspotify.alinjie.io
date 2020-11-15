@@ -10,17 +10,8 @@ export default function Layout({
 }: HTMLProps<HTMLDivElement>) {
   const [session, loading] = useSession();
 
-  const callbackUrl =
-    process.env.NODE_ENV === "development"
-      ? "http://localhost:3000"
-      : "https://myspotify-alinjie-io.vercel.app/";
-
   if (!session) {
-    return (
-      <button onClick={() => signIn("spotify", { callbackUrl })}>
-        Sign in
-      </button>
-    );
+    return <button onClick={() => signIn("spotify")}>Sign in</button>;
   }
 
   if (loading) return <h1>Loading...</h1>;
