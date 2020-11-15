@@ -1,29 +1,32 @@
-import { SPOTIFY_API_URL, timeSpans } from "consts";
+import { SPOTIFY_API_URL } from "consts";
 import { TopTracks } from "dtos/TopTracks";
 import { useSession } from "next-auth/client";
-import useSWR from "swr";
+import { useInfiniteQuery } from "react-query";
+import { Timespan } from "types/Timespan";
 
-export function useTopTracks() {
+export function useTopTracks(timespan: Timespan = "medium_term", limit = 10) {
   const [session] = useSession();
 
-  return useSWR<TopTracks[], string>(`top-tracks`, async () => {
-    return await Promise.all(
-      timeSpans.map(async (timeSpan) => {
-        const response = await fetch(
-          `${SPOTIFY_API_URL}/me/top/tracks?limit=5&time_range=${timeSpan}`,
-          {
-            headers: {
-              Authorization: `Bearer ${session.accessToken}`,
-            },
-          }
-        );
+  return useInfiniteQuery<TopTracks, string>(
+    "top-tracks",
+    async (_, offset = 0) => {
+      const url = `${SPOTIFY_API_URL}/me/top/tracks?limit=${limit}&offset=${offset}&time_range=${timespan}`;
 
-        if (!response.ok) {
-          throw await response.text();
-        }
+      const response = await fetch(url, {
+        headers: {
+          Authorization: `Bearer ${session.accessToken}`,
+        },
+      });
 
-        return await response.json();
-      })
-    );
-  });
+      if (!response.ok) {
+        throw await response.text();
+      }
+
+      return await response.json();
+    },
+    {
+      getFetchMore: (lastGroup) =>
+        lastGroup.next ? lastGroup.offset + limit : null,
+    }
+  );
 }
