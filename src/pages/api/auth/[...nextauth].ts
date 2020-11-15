@@ -29,7 +29,8 @@ const options: InitOptions = {
       session.accessToken = token.accessToken;
       return session;
     },
-    redirect: async (url) => {
+    redirect: async (url, baseurl) => {
+      console.log(url, baseurl);
       return url;
     },
     jwt: async (token, _user, _account, profile, _isNewUser) => {
