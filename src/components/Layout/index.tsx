@@ -1,5 +1,5 @@
 import cx from "classnames";
-import { useSession } from "next-auth/client";
+import { signIn, useSession } from "next-auth/client";
 import { HTMLProps } from "react";
 import Header from "components/Header";
 
@@ -11,7 +11,7 @@ export default function Layout({
   const [session, loading] = useSession();
 
   if (!session) {
-    <button>Sign in</button>;
+    return <button onClick={() => signIn("spotify")}>Sign in</button>;
   }
 
   if (loading) return <h1>Loading...</h1>;

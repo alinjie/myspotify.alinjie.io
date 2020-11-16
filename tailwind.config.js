@@ -8,6 +8,29 @@ module.exports = {
   ],
   theme: {
     extend: {
+      "animation-duration": {
+        100: "100ms"
+      },
+      keyframes: {
+        "scale-y": {
+          "0%, 100%": {
+            transform: "scaleY(1)"
+          },
+          "50%": {
+            transform: "scaleY(0.5)"
+          },
+
+        },
+      },
+      animation: {
+        "scale-y-1": "scale-y 0.5s linear infinite",
+        "scale-y-2": "scale-y 0.75s linear infinite",
+        "scale-y-3": "scale-y 1s linear infinite",
+        "scale-y-4": "scale-y 1.25s linear infinite",
+        "scale-y-5": "scale-y 1.5s linear infinite",
+        "scale-y-6": "scale-y 2s linear infinite",
+        "scale-y-7": "scale-y 2.5s linear infinite",
+      },
       width: {
         "max-content": "max-content"
       },

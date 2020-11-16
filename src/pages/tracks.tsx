@@ -6,6 +6,7 @@ import { useTopTracks } from "hooks/useTopTracks";
 import Container from "components/Container";
 import { useState } from "react";
 import { Timespan } from "types/Timespan";
+import Loader from "components/Loader";
 
 export default function Tracks() {
   const [activeFilter, setActiveFilter] = useState<Timespan>(
@@ -16,25 +17,32 @@ export default function Tracks() {
     30
   );
 
-  if (error) return <p>{error}</p>;
-
-  if (!data) return <div>Loading...</div>;
+  if (error)
+    return (
+      <Container>
+        <p>{error}</p>
+      </Container>
+    );
 
   return (
     <div>
       <TimespanPicker onChange={(timespan) => setActiveFilter(timespan)} />
       <Container className="space-y-4">
-        {data.map((tracks) => {
-          return tracks.items.map((track) => (
-            <Track
-              key={track.id}
-              name={track.name}
-              artistName={track.artists[0].name}
-              albumCover={track.album.images[0].url}
-              duration={track.duration_ms}
-            />
-          ));
-        })}
+        {!data ? (
+          <Loader />
+        ) : (
+          data.map((tracks) => {
+            return tracks.items.map((track) => (
+              <Track
+                key={track.id}
+                name={track.name}
+                artistName={track.artists[0].name}
+                albumCover={track.album.images[0].url}
+                duration={track.duration_ms}
+              />
+            ));
+          })
+        )}
         {canFetchMore && (
           <Button
             disabled={isFetching}

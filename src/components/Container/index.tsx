@@ -6,6 +6,9 @@ export default function Container({
   ...props
 }: HTMLProps<HTMLDivElement>) {
   return (
-    <div {...props} className={cx("mx-auto max-w-6xl p-4 md:p-0", className)} />
+    <div
+      {...props}
+      className={cx("mx-auto max-w-6xl p-4 md:p-0 my-4", className)}
+    />
   );
 }

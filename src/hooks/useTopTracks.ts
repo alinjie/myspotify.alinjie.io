@@ -14,7 +14,7 @@ export function useTopTracks(timespan: Timespan = "medium_term", limit = 10) {
 
       const response = await fetch(url, {
         headers: {
-          Authorization: `Bearer ${session.accessToken}`,
+          Authorization: `Bearer ${session?.accessToken}`,
         },
       });
 
