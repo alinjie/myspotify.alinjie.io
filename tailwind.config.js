@@ -21,7 +21,7 @@ module.exports = {
     },
   },
   variants: {
-    opacity: ["disabled"]
+    opacity: ["disabled", "hover"],
   },
   plugins: [],
 }
