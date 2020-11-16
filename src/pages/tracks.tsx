@@ -4,9 +4,10 @@ import Track from "components/Track";
 import { timeSpanOptions } from "consts";
 import { useTopTracks } from "hooks/useTopTracks";
 import Container from "components/Container";
-import { useState } from "react";
+import { Fragment, useState } from "react";
 import { Timespan } from "types/Timespan";
 import Loader from "components/Loader";
+import Transition from "components/Transition";
 
 export default function Tracks() {
   const [activeFilter, setActiveFilter] = useState<Timespan>(
@@ -25,7 +26,7 @@ export default function Tracks() {
     );
 
   return (
-    <div>
+    <Fragment>
       <TimespanPicker onChange={(timespan) => setActiveFilter(timespan)} />
       <Container className="space-y-4">
         {!data ? (
@@ -34,7 +35,6 @@ export default function Tracks() {
           data.map((tracks) => {
             return tracks.items.map((track) => (
               <Track
-                key={track.id}
                 name={track.name}
                 artistName={track.artists[0].name}
                 albumCover={track.album.images[0].url}
@@ -53,6 +53,6 @@ export default function Tracks() {
           </Button>
         )}
       </Container>
-    </div>
+    </Fragment>
   );
 }

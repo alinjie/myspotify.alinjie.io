@@ -17,10 +17,12 @@ export default function Button({
   return (
     <button
       className={cx(
-        "px-6 rounded-full h-8 transition-all text-sm duration-100 disabled:opacity-25 hover:bg-white hover:text-black",
+        "px-6 rounded-full h-8 transition-all text-sm duration-100 disabled:opacity-25",
         {
-          "border border-white": variant == "outlined",
-          "bg-spotify-green text-white": variant == "primary",
+          "border border-white hover:bg-white hover:text-black":
+            variant == "outlined",
+          "bg-spotify-green text-white hover:text-spotify-green hover:bg-white":
+            variant == "primary",
         },
         className
       )}

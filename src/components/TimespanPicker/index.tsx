@@ -37,7 +37,7 @@ export function TimespanPicker({ onChange }: Props) {
   const [activeTimespan, setActiveTimespan] = useState<Timespan>(timeSpans[0]);
   return (
     <div className="flex flex-col text-center p-4 bg-spotify-dark items-center space-y-4">
-      <h2 className="text-xl font-semibold">Pick a timespan</h2>
+      <h2 className="text-2xl font-bold">Pick a timespan</h2>
       <p className="font-light text-gray-200 text-sm">
         Change timespan to view data from different time ranges
       </p>
@@ -48,7 +48,7 @@ export function TimespanPicker({ onChange }: Props) {
             onClick={() => {
               const timespan = key as Timespan;
               setActiveTimespan(timespan);
-              onChange && onChange(timespan);
+              onChange && timespan !== activeTimespan && onChange(timespan);
             }}
           >
             {map[key]}

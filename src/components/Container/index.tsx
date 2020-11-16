@@ -8,7 +8,7 @@ export default function Container({
   return (
     <div
       {...props}
-      className={cx("mx-auto max-w-6xl p-4 md:p-0 my-4", className)}
+      className={cx("mx-auto max-w-6xl p-4 md:px-0 md:py-10", className)}
     />
   );
 }

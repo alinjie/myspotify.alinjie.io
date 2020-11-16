@@ -4,6 +4,7 @@ import cx from "classnames";
 import { useRouter } from "next/dist/client/router";
 import Button from "components/Button";
 import { signOut } from "next-auth/client";
+import Container from "components/Container";
 
 type NavLinkProps = {
   href: string;
@@ -29,8 +30,8 @@ function NavLink({ href, pageName }: NavLinkProps) {
 
 export default function Header() {
   return (
-    <header className="p-4">
-      <div className="max-w-6xl mx-auto md:flex md:items-center md:justify-between">
+    <header className="py-4">
+      <Container className="md:flex md:items-center md:justify-between">
         <div className="flex justify-between mb-2">
           <Link href="/">
             <a>
@@ -70,7 +71,7 @@ export default function Header() {
         >
           Sign out
         </Button>
-      </div>
+      </Container>
     </header>
   );
 }
