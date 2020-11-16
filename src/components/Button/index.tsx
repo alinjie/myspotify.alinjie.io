@@ -17,7 +17,7 @@ export default function Button({
   return (
     <button
       className={cx(
-        "px-6 py-2 rounded-full font-semibold hover:opacity-50 transition-opacity duration-100 disabled:opacity-25",
+        "px-6 rounded-full h-8 transition-all text-sm duration-100 disabled:opacity-25 hover:bg-white hover:text-black",
         {
           "border border-white": variant == "outlined",
           "bg-spotify-green text-white": variant == "primary",
