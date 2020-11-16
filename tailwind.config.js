@@ -1,3 +1,5 @@
+const defaultTheme = require("tailwindcss/defaultTheme");
+
 module.exports = {
   future: {
     // removeDeprecatedGapUtilities: true,
@@ -7,6 +9,9 @@ module.exports = {
     "**/*.{ts,tsx}"
   ],
   theme: {
+    fontFamily: {
+      sans: ["Inter", ...defaultTheme.fontFamily.sans]
+    },
     extend: {
       "animation-duration": {
         100: "100ms"
