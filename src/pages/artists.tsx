@@ -5,6 +5,8 @@ import { useTopArtists } from "hooks/useTopArtists";
 import { useState } from "react";
 import Select from "components/Select";
 import { Timespan } from "types/Timespan";
+import { TimespanPicker } from "components/TimespanPicker";
+import Container from "components/Container";
 
 export default function Artists() {
   const [activeFilter, setActiveFilter] = useState<Timespan>(
@@ -20,16 +22,8 @@ export default function Artists() {
 
   return (
     <div>
-      <Select
-        className="mb-6"
-        options={timeSpanOptions}
-        onChange={(selected) =>
-          setActiveFilter(
-            timeSpanOptions.find((item) => item.value === selected.value).value
-          )
-        }
-      />
-      <div className="grid grid-cols-autofit-150 gap-4">
+      <TimespanPicker onChange={(timespan) => setActiveFilter(timespan)} />
+      <Container className="grid grid-cols-autofit-150 gap-4">
         {data.map((artists) =>
           artists.items.map((artist) => (
             <Artist
@@ -40,16 +34,16 @@ export default function Artists() {
             />
           ))
         )}
-      </div>
+      </Container>
 
       {canFetchMore && (
-        <Button
+        <button
           disabled={isFetching}
           onClick={() => fetchMore()}
-          className="mt-6"
+          className="mt-6 underline"
         >
           Load more
-        </Button>
+        </button>
       )}
     </div>
   );

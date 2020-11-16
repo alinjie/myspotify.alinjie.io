@@ -1,8 +1,9 @@
 import Button from "components/Button";
-import Select from "components/Select";
+import { TimespanPicker } from "components/TimespanPicker";
 import Track from "components/Track";
 import { timeSpanOptions } from "consts";
 import { useTopTracks } from "hooks/useTopTracks";
+import Container from "components/Container";
 import { useState } from "react";
 import { Timespan } from "types/Timespan";
 
@@ -21,16 +22,8 @@ export default function Tracks() {
 
   return (
     <div>
-      <Select
-        className="mb-6"
-        options={timeSpanOptions}
-        onChange={(selected) =>
-          setActiveFilter(
-            timeSpanOptions.find((item) => item.value === selected.value).value
-          )
-        }
-      />
-      <div className="space-y-4">
+      <TimespanPicker onChange={(timespan) => setActiveFilter(timespan)} />
+      <Container className="space-y-4">
         {data.map((tracks) => {
           return tracks.items.map((track) => (
             <Track
@@ -51,7 +44,7 @@ export default function Tracks() {
             Load more
           </Button>
         )}
-      </div>
+      </Container>
     </div>
   );
 }
