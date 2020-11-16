@@ -12,7 +12,9 @@ export default function Artist({ image, name, large = false }: Props) {
   return (
     <div
       data-testid="artist"
-      className={cx("flex items-center", { "flex-col space-y-2": large })}
+      className={cx("flex items-center text-center", {
+        "flex-col space-y-2": large,
+      })}
     >
       <Image
         src={image}
