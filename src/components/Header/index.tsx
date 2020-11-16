@@ -34,7 +34,7 @@ export default function Header() {
       <Container className="md:flex md:items-center md:justify-between">
         <div className="flex justify-between mb-2">
           <Link href="/">
-            <a>
+            <a className="flex">
               <Image
                 src="/img/spotify-logo.png"
                 height={40}
