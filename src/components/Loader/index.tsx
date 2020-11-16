@@ -16,7 +16,7 @@ export default function Loader() {
           y1="1.31134e-07"
           x2="3"
           y2="32"
-          className="stroke-current animate-scale-y-5 origin-center"
+          className="stroke-current animate-scale-y-1000 origin-center"
           strokeWidth="6"
         />
         <line
@@ -24,7 +24,7 @@ export default function Loader() {
           y1="1.31134e-07"
           x2="13"
           y2="32"
-          className="stroke-current animate-scale-y-3 origin-center"
+          className="stroke-current animate-scale-y-600 origin-center"
           strokeWidth="6"
         />
         <line
@@ -32,7 +32,7 @@ export default function Loader() {
           y1="1.31134e-07"
           x2="23"
           y2="32"
-          className="stroke-current animate-scale-y-6 origin-center"
+          className="stroke-current animate-scale-y-1400 origin-center"
           strokeWidth="6"
         />
         <line
@@ -40,7 +40,7 @@ export default function Loader() {
           y1="1.31134e-07"
           x2="33"
           y2="32"
-          className="stroke-current animate-scale-y-2 origin-center"
+          className="stroke-current animate-scale-y-400 origin-center"
           strokeWidth="6"
         />
         <line
@@ -48,7 +48,7 @@ export default function Loader() {
           y1="1.31134e-07"
           x2="43"
           y2="32"
-          className="stroke-current animate-scale-y-4 origin-center"
+          className="stroke-current animate-scale-y-800 origin-center"
           strokeWidth="6"
         />
         <line
@@ -56,7 +56,7 @@ export default function Loader() {
           y1="1.31134e-07"
           x2="53"
           y2="32"
-          className="stroke-current animate-scale-y-1 origin-center"
+          className="stroke-current animate-scale-y-1200 origin-center"
           strokeWidth="6"
         />
         <line
@@ -64,7 +64,7 @@ export default function Loader() {
           y1="1.31134e-07"
           x2="63"
           y2="32"
-          className="stroke-current animate-scale-y-7 origin-center"
+          className="stroke-current animate-scale-y-800 origin-center"
           strokeWidth="6"
         />
 
@@ -73,7 +73,7 @@ export default function Loader() {
           y1="1.31134e-07"
           x2="73"
           y2="32"
-          className="stroke-current animate-scale-y-2 origin-center"
+          className="stroke-current animate-scale-y-400 origin-center"
           strokeWidth="6"
         />
       </svg>

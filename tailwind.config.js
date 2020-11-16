@@ -28,13 +28,14 @@ module.exports = {
         },
       },
       animation: {
-        "scale-y-1": "scale-y 0.5s linear infinite",
-        "scale-y-2": "scale-y 0.75s linear infinite",
-        "scale-y-3": "scale-y 1s linear infinite",
-        "scale-y-4": "scale-y 1.25s linear infinite",
-        "scale-y-5": "scale-y 1.5s linear infinite",
-        "scale-y-6": "scale-y 2s linear infinite",
-        "scale-y-7": "scale-y 2.5s linear infinite",
+        "scale-y-200": "scale-y 0.2s linear infinite",
+        "scale-y-400": "scale-y 0.4s linear infinite",
+        "scale-y-600": "scale-y 0.6s linear infinite",
+        "scale-y-800": "scale-y 0.8s linear infinite",
+        "scale-y-1000": "scale-y 1s linear infinite",
+        "scale-y-1200": "scale-y 1.2s linear infinite",
+        "scale-y-1400": "scale-y 1.4s linear infinite",
+        "scale-y-1600": "scale-y 1.6s linear infinite",
       },
       width: {
         "max-content": "max-content"
