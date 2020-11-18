@@ -2,6 +2,7 @@ import Artist from "components/Artist";
 import Container from "components/Container";
 import Loader from "components/Loader";
 import Track from "components/Track";
+import Transition from "components/Transition";
 import UserOverview from "components/UserOverview";
 import { useTopArtists } from "hooks/useTopArtists";
 import { useTopTracks } from "hooks/useTopTracks";

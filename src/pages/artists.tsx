@@ -30,7 +30,6 @@ export default function Artists() {
   return (
     <Fragment>
       <TimespanPicker onChange={(timespan) => setActiveFilter(timespan)} />
-
       <Container>
         {!data ? (
           <Loader />
