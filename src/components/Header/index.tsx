@@ -2,6 +2,9 @@ import Image from "next/image";
 import Link from "next/link";
 import cx from "classnames";
 import { useRouter } from "next/dist/client/router";
+import Button from "components/Button";
+import { signOut } from "next-auth/client";
+import Container from "components/Container";
 
 type NavLinkProps = {
   href: string;
@@ -15,7 +18,7 @@ function NavLink({ href, pageName }: NavLinkProps) {
     <Link href={href}>
       <a
         className={cx(
-          "font-semibold uppercase text-sm opacity-50",
+          "font-semibold uppercase text-xs opacity-50 transition-opacity duration-150 hover:opacity-100 md:text-sm",
           isActive && "opacity-100"
         )}
       >
@@ -27,32 +30,48 @@ function NavLink({ href, pageName }: NavLinkProps) {
 
 export default function Header() {
   return (
-    <header className="flex items-center justify-between p-4 max-w-6xl mx-auto">
-      <div>
-        <Link href="/">
-          <a>
-            <Image
-              src="/img/spotify-logo.png"
-              height={32}
-              width={32}
-              className="rounded-full"
-            />
-          </a>
-        </Link>
-      </div>
-      <nav>
-        <ul className="flex space-x-3">
-          <li>
-            <NavLink href="/" pageName="Overview" />
-          </li>
-          <li>
-            <NavLink href="/artists" pageName="Artists" />
-          </li>
-          <li>
-            <NavLink href="/tracks" pageName="Tracks" />
-          </li>
-        </ul>
-      </nav>
+    <header className="py-4">
+      <Container className="md:flex md:items-center md:justify-between">
+        <div className="flex justify-between mb-2">
+          <Link href="/">
+            <a className="flex">
+              <Image
+                src="/img/spotify-logo.png"
+                height={40}
+                width={40}
+                className="rounded-full"
+              />
+            </a>
+          </Link>
+          <Button
+            className="md:hidden"
+            variant="outlined"
+            onClick={() => signOut()}
+          >
+            Sign out
+          </Button>
+        </div>
+        <nav>
+          <ul className="flex space-x-3">
+            <li>
+              <NavLink href="/" pageName="Overview" />
+            </li>
+            <li>
+              <NavLink href="/artists" pageName="Artists" />
+            </li>
+            <li>
+              <NavLink href="/tracks" pageName="Tracks" />
+            </li>
+          </ul>
+        </nav>
+        <Button
+          className="hidden md:block"
+          variant="outlined"
+          onClick={() => signOut()}
+        >
+          Sign out
+        </Button>
+      </Container>
     </header>
   );
 }

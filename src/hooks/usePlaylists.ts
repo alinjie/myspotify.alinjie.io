@@ -8,7 +8,7 @@ export function usePlaylists() {
   return useQuery<Playlists, string>("playlists", async () => {
     const response = await fetch(`${SPOTIFY_API_URL}/me/playlists`, {
       headers: {
-        Authorization: `Bearer ${session.accessToken}`,
+        Authorization: `Bearer ${session?.accessToken}`,
       },
     });
 

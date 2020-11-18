@@ -2,6 +2,10 @@ import cx from "classnames";
 import { signIn, useSession } from "next-auth/client";
 import { HTMLProps } from "react";
 import Header from "components/Header";
+import Loader from "components/Loader";
+import Container from "components/Container";
+import Transition from "components/Transition";
+import { useRouter } from "next/dist/client/router";
 
 export default function Layout({
   className,
@@ -9,23 +13,25 @@ export default function Layout({
   ...props
 }: HTMLProps<HTMLDivElement>) {
   const [session, loading] = useSession();
+  const router = useRouter();
 
   if (!session) {
     return <button onClick={() => signIn("spotify")}>Sign in</button>;
   }
 
-  if (loading) return <h1>Loading...</h1>;
+  if (loading)
+    return (
+      <Container>
+        <Loader />
+      </Container>
+    );
 
   return (
-    <div
-      className={cx(
-        "min-h-screen h-full text-white bg-spotify-black",
-        className
-      )}
-      {...props}
-    >
+    <div className={cx("min-h-screen h-full text-white", className)} {...props}>
       <Header />
-      <main className="p-4 max-w-6xl mx-auto">{children}</main>
+      <Transition transitionKey={router.pathname}>
+        <main className="bg-spotify-gray min-h-screen">{children}</main>
+      </Transition>
     </div>
   );
 }

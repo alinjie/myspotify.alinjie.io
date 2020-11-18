@@ -10,7 +10,7 @@ export function useArtistFollowing() {
       `${SPOTIFY_API_URL}/me/following?type=artist`,
       {
         headers: {
-          Authorization: `Bearer ${session.accessToken}`,
+          Authorization: `Bearer ${session?.accessToken}`,
         },
       }
     );

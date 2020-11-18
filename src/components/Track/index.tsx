@@ -16,10 +16,13 @@ export default function Track({
   const trackDuration = `${Math.floor(
     (duration % (1000 * 60 * 60)) / (1000 * 60)
   )}:${Math.floor((duration % (1000 * 60)) / 1000)}`;
+
   return (
     <div className="flex justify-between">
       <div className="flex">
-        <Image src={albumCover} height={50} width={50} />
+        <div>
+          <Image src={albumCover} height={50} width={50} />
+        </div>
         <div className="flex flex-col ml-4">
           <span className="font-semibold">{artistName}</span>
           <span>{name}</span>

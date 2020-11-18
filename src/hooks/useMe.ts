@@ -8,7 +8,7 @@ export function useMe() {
   return useQuery<Me, string>("me", async () => {
     const response = await fetch(`${SPOTIFY_API_URL}/me`, {
       headers: {
-        Authorization: `Bearer ${session.accessToken}`,
+        Authorization: `Bearer ${session?.accessToken}`,
       },
     });
 
