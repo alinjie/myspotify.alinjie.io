@@ -30,7 +30,7 @@ function NavLink({ href, pageName }: NavLinkProps) {
 export default function Header() {
   return (
     <header>
-      <div className="max-w-6xl mx-auto my-4 md:flex md:items-center md:justify-between">
+      <div className="max-w-6xl mx-auto md:flex md:items-center md:justify-between p-4">
         <div className="flex justify-between mb-2">
           <Link href="/">
             <a className="flex">
