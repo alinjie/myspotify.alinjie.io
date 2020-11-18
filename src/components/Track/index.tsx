@@ -21,7 +21,7 @@ export default function Track({
     <div className="flex justify-between">
       <div className="flex">
         <div>
-          <Image src={albumCover} height={50} width={50} />
+          <Image key={name} src={albumCover} height={50} width={50} />
         </div>
         <div className="flex flex-col ml-4">
           <span className="font-semibold">{artistName}</span>
