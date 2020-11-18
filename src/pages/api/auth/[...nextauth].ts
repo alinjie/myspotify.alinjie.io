@@ -22,6 +22,7 @@ const options: InitOptions = {
     signIn: async (_user, account, profile) => {
       if (account) {
         profile.accessToken = account.accessToken;
+        profile.refreshToken = account.refreshToken;
       }
       return true;
     },
@@ -32,6 +33,7 @@ const options: InitOptions = {
     jwt: async (token, _user, _account, profile, _isNewUser) => {
       if (profile) {
         token.accessToken = profile.accessToken;
+        token.refreshToken = profile.refreshToken;
       }
       return token;
     },

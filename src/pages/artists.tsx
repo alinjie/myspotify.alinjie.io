@@ -8,7 +8,6 @@ import Container from "components/Container";
 import Loader from "components/Loader";
 import Button from "components/Button";
 import cx from "classnames";
-import Transition from "components/Transition";
 
 export default function Artists() {
   const [activeFilter, setActiveFilter] = useState<Timespan>(

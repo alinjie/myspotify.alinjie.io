@@ -7,7 +7,6 @@ import Container from "components/Container";
 import { Fragment, useState } from "react";
 import { Timespan } from "types/Timespan";
 import Loader from "components/Loader";
-import Transition from "components/Transition";
 
 export default function Tracks() {
   const [activeFilter, setActiveFilter] = useState<Timespan>(
