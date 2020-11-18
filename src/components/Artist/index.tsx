@@ -9,6 +9,7 @@ type Props = {
 
 export default function Artist({ image, name, large = false }: Props) {
   const imageSize = large ? 100 : 50;
+
   return (
     <div
       data-testid="artist"
@@ -17,6 +18,7 @@ export default function Artist({ image, name, large = false }: Props) {
       })}
     >
       <Image
+        key={name}
         src={image}
         width={imageSize}
         height={imageSize}
