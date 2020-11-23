@@ -4,6 +4,7 @@ import { HTMLProps } from "react";
 import Header from "components/Header";
 import Loader from "components/Loader";
 import Container from "components/Container";
+import SignIn from "components/SignIn";
 
 export default function Layout({
   className,
@@ -13,7 +14,7 @@ export default function Layout({
   const [session, loading] = useSession();
 
   if (!session) {
-    return <button onClick={() => signIn("spotify")}>Sign in</button>;
+    return <SignIn />;
   }
 
   if (loading)
@@ -23,7 +24,6 @@ export default function Layout({
       </Container>
     );
 
-  console.log(document.cookie);
   return (
     <div className={cx("min-h-screen h-full text-white", className)} {...props}>
       <Header />
