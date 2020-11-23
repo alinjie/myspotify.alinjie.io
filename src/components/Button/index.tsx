@@ -21,7 +21,7 @@ export default function Button({
   return (
     <div
       className={cx(
-        "relative transition-all duration-100 rounded-full text-sm",
+        "relative transition-all duration-150 rounded-full text-sm focus:ring inline-block",
         {
           "border border-white hover:bg-white hover:text-black":
             variant == "outlined",
