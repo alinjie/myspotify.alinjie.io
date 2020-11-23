@@ -31,15 +31,14 @@ export default function UserOverview() {
 
   if (loading) return null;
 
+  const avatar =
+    meQuery.data.images[0]?.url ||
+    "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png";
+
   return (
     <div className="flex flex-col items-center">
       <div>
-        <Image
-          src={meQuery.data.images[0].url}
-          height={100}
-          width={100}
-          className="rounded-full"
-        />
+        <Image src={avatar} height={100} width={100} className="rounded-full" />
         <h2 className="text-xl text-center font-semibold my-4">
           {meQuery.data.display_name}
         </h2>
