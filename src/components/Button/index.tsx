@@ -1,10 +1,13 @@
 import { HTMLProps } from "react";
 import cx from "classnames";
+import { FontAwesomeIcon as Icon } from "@fortawesome/react-fontawesome";
+import { IconProp } from "@fortawesome/fontawesome-svg-core";
 
 type Variant = "outlined" | "primary";
 
 type Props = HTMLProps<HTMLButtonElement> & {
   variant?: Variant;
+  icon?: IconProp;
 };
 
 export default function Button({
@@ -12,12 +15,13 @@ export default function Button({
   type = "button",
   className,
   variant = "primary",
+  icon,
   ...props
 }: Props) {
   return (
-    <button
+    <div
       className={cx(
-        "px-6 rounded-full h-8 transition-all text-sm duration-100 disabled:opacity-25",
+        "relative transition-all duration-100 rounded-full text-sm",
         {
           "border border-white hover:bg-white hover:text-black":
             variant == "outlined",
@@ -26,9 +30,19 @@ export default function Button({
         },
         className
       )}
-      {...props}
     >
-      {children}
-    </button>
+      {icon && (
+        <Icon
+          className="absolute top-0 bottom-0 my-auto ml-4 text-xl"
+          icon={icon}
+        />
+      )}
+      <button
+        className={cx("px-6 h-10 disabled:opacity-25", icon && "pl-12")}
+        {...props}
+      >
+        {children}
+      </button>
+    </div>
   );
 }
