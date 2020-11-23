@@ -48,6 +48,9 @@ const options: InitOptions = {
       return token;
     },
   },
+  pages: {
+    signIn: "/",
+  },
 };
 
 export default (req: NextApiRequest, res: NextApiResponse) =>
